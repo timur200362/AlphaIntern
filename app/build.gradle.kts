@@ -41,6 +41,25 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.compose.kotlin.compiler)
+
+    // region Navigation
+    implementation(libs.navigation.compose)
+    // endregion
+
+    // region Network
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.retrofit.json.converter)
+    // endregion
+
+    // region DI
+    implementation(libs.koin)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.test)
+    // endregion
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
