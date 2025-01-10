@@ -21,7 +21,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.alphaintern.presentation.screens.CardInfoScreen
-import com.example.alphaintern.presentation.screens.HomeScreen
 import com.example.alphaintern.presentation.screens.QueryHistoryScreen
 import com.example.alphaintern.ui.theme.AlphaInternTheme
 

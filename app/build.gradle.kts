@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.koin)
     implementation(libs.koin.compose)
     implementation(libs.koin.test)
+    implementation(libs.androidx.runtime.livedata)
     // endregion
 
     testImplementation(libs.junit)
