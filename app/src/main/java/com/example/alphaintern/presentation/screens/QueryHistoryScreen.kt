@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun SecondScreen(
+fun QueryHistoryScreen(
     modifier: Modifier = Modifier
 ) {
-    Text("SecondScreen")
+    Text("QueryHistoryScreen")
 }

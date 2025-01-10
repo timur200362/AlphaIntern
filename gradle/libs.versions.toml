@@ -42,7 +42,7 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "androidxMaterial"}
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
-compose-kotlin-compiler = { group="androidx.compose.compiler", name = "compiler", version.ref = "composeKotlinCompiler" }
+androidx-compose-kotlin-compiler = { group="androidx.compose.compiler", name = "compiler", version.ref = "composeKotlinCompiler" }
 
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
@@ -64,4 +64,5 @@ koin-test = { group = "io.insert-koin", name = "koin-test-junit4", version.ref =
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 

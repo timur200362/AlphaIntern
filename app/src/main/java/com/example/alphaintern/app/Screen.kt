@@ -7,5 +7,5 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class Screen(val route: String, val title: String, val icon: ImageVector) {
     data object Home : Screen("home", "Home", Icons.Default.Home)
-    data object Second : Screen("second", "Second", Icons.Default.Info)
+    data object QueryHistory : Screen("history", "History", Icons.Default.Info)
 }

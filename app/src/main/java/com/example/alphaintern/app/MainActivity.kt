@@ -20,8 +20,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.alphaintern.presentation.screens.CardInfoScreen
 import com.example.alphaintern.presentation.screens.HomeScreen
-import com.example.alphaintern.presentation.screens.SecondScreen
+import com.example.alphaintern.presentation.screens.QueryHistoryScreen
 import com.example.alphaintern.ui.theme.AlphaInternTheme
 
 
@@ -42,7 +43,7 @@ class MainActivity : ComponentActivity() {
 fun ScaffoldExample(){
     val items = listOf(
         Screen.Home,
-        Screen.Second
+        Screen.QueryHistory
     )
 
     val navController = rememberNavController()
@@ -75,8 +76,8 @@ fun ScaffoldExample(){
         }
     ) { innerPadding ->
         NavHost(navController, startDestination = "home", Modifier.padding(innerPadding)) {
-            composable(Screen.Home.route) { HomeScreen() }
-            composable(Screen.Second.route) { SecondScreen() }
+            composable(Screen.Home.route) { CardInfoScreen() }
+            composable(Screen.QueryHistory.route) { QueryHistoryScreen() }
         }
     }
 }
