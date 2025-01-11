@@ -92,13 +92,13 @@ fun CardInfoScreen(
             CircularProgressIndicator(modifier = Modifier.padding(top = 16.dp))
         } else {
             cardInfo?.let {
-                Spacer(modifier = Modifier.height(100.dp))
+                Spacer(modifier = Modifier.height(70.dp))
                 Text(
                     text = "Информация о карте",
                     style = MaterialTheme.typography.bodySmall.copy(
                         fontWeight = FontWeight.Bold, fontSize = 18.sp)
                 )
-                Text("Страна: ${it.country}")
+                Text("Страна: ${it.country.name}")
                 Text("Широта: ${it.country.latitude}")
                 Text("Долгота: ${it.country.longitude}")
                 Text("Тип карты: ${it.type}")
