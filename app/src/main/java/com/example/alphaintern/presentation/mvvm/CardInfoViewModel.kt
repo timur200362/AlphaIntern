@@ -21,7 +21,7 @@ class CardInfoViewModel(
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> get() = _errorMessage
 
-    fun loadCardInfo(binNumber: String) {
+    fun getCardInfo(binNumber: String) {
         viewModelScope.launch {
             _loading.value = true
             _errorMessage.value = null

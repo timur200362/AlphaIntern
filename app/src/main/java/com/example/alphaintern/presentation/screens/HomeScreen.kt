@@ -80,7 +80,7 @@ fun CardInfoScreen(
         Button(
             onClick = {
                 if (binNumber.length in 6..8) {
-                    viewModel.loadCardInfo(binNumber)
+                    viewModel.getCardInfo(binNumber)
                 }
             },
             modifier = Modifier.padding(top = 2.dp)
