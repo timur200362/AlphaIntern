@@ -55,7 +55,7 @@ fun CardInfoScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Spacer(modifier = Modifier.height(16.dp)) // Отступ сверху
+        Spacer(modifier = Modifier.height(16.dp))
 
         TextField(
             value = binNumber,
@@ -67,7 +67,7 @@ fun CardInfoScreen(
             label = { Text("Введите BIN номер (6-8 цифр)") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             isError = binNumber.length !in (6..8),
-            modifier = Modifier.fillMaxWidth() // Полная ширина
+            modifier = Modifier.fillMaxWidth()
         )
 
         Text(

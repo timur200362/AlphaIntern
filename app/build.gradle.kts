@@ -35,6 +35,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -46,6 +47,7 @@ dependencies {
     implementation(libs.androidx.compose.kotlin.compiler)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.runtime.livedata)
 
     // region Navigation
     implementation(libs.navigation.compose)
@@ -63,7 +65,13 @@ dependencies {
     implementation(libs.koin)
     implementation(libs.koin.compose)
     implementation(libs.koin.test)
-    implementation(libs.androidx.runtime.livedata)
+    // endregion
+
+    // region Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    annotationProcessor(libs.androidx.room.room.compiler)
+    kapt(libs.androidx.room.room.compiler)
     // endregion
 
     testImplementation(libs.junit)
