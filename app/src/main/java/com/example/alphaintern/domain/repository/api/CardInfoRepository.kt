@@ -1,4 +1,4 @@
-package com.example.alphaintern.domain.repository
+package com.example.alphaintern.domain.repository.api
 
 import com.example.alphaintern.data.remote.response.CardInfo
 

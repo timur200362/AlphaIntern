@@ -1,7 +1,7 @@
 package com.example.alphaintern.domain.usecase.api.impl
 
 import com.example.alphaintern.data.remote.response.CardInfo
-import com.example.alphaintern.domain.repository.CardInfoRepository
+import com.example.alphaintern.domain.repository.api.CardInfoRepository
 import com.example.alphaintern.domain.usecase.api.interfaces.GetCardInfoUseCase
 
 class GetCardInfoUseCaseImpl(

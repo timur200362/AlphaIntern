@@ -55,6 +55,13 @@ fun CardInfoScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
+
+        Text(
+            text = "Поиск",
+            style = MaterialTheme.typography.bodySmall.copy(
+                fontWeight = FontWeight.Bold, fontSize = 22.sp)
+        )
+
         Spacer(modifier = Modifier.height(16.dp))
 
         TextField(
@@ -76,6 +83,8 @@ fun CardInfoScreen(
             color = Color.Gray,
             modifier = Modifier.padding(top = 4.dp)
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         Button(
             onClick = {

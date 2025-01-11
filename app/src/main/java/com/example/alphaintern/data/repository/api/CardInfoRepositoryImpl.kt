@@ -1,8 +1,8 @@
-package com.example.alphaintern.data.repository
+package com.example.alphaintern.data.repository.api
 
 import com.example.alphaintern.data.remote.ApiService
 import com.example.alphaintern.data.remote.response.CardInfo
-import com.example.alphaintern.domain.repository.CardInfoRepository
+import com.example.alphaintern.domain.repository.api.CardInfoRepository
 
 class CardInfoRepositoryImpl(
     private val apiService: ApiService
