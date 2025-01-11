@@ -13,7 +13,7 @@ val dataModule = module {
     single { ApiFactory().binApi }
     single<CardInfoRepository> { CardInfoRepositoryImpl(get()) }
 
-    single { Room.databaseBuilder(get(), CardDatabase::class.java, "").build() }
+    single { Room.databaseBuilder(get(), CardDatabase::class.java, "card_database.db").build() }
     single { get<CardDatabase>().cardDao() }
     single<CardDatabaseRepository> { CardDatabaseRepositoryImpl(get()) }
 }
