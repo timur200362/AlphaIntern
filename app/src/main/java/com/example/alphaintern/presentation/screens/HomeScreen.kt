@@ -1,5 +1,10 @@
 package com.example.alphaintern.presentation.screens
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,11 +28,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.alphaintern.presentation.mvvm.CardInfoViewModel
@@ -45,6 +52,7 @@ fun HomeScreen(
 fun CardInfoScreen(
     viewModel: CardInfoViewModel = koinViewModel()
 ) {
+    val context = LocalContext.current
     val cardInfo by viewModel.cardInfo.observeAsState()
     val loading by viewModel.loading.observeAsState(false)
     val errorMessage by viewModel.errorMessage.observeAsState()
@@ -112,8 +120,27 @@ fun CardInfoScreen(
                         fontWeight = FontWeight.Bold, fontSize = 18.sp)
                 )
                 Text("Страна: ${it.country.name}")
-                Text("Широта: ${it.country.latitude}")
-                Text("Долгота: ${it.country.longitude}")
+                Text(
+                    "Широта: ${it.country.latitude}",
+                    modifier = Modifier.clickable {
+                        if (it.country.latitude != null && it.country.longitude != null) {
+                            openMap(context, it.country.latitude, it.country.longitude)
+                        } else {
+                            Toast.makeText(context, "Координаты отсутствуют", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
+
+                Text(
+                    "Долгота: ${it.country.longitude}",
+                    modifier = Modifier.clickable {
+                        if (it.country.longitude != null && it.country.latitude != null) {
+                            openMap(context, it.country.longitude, it.country.latitude)
+                        } else {
+                            Toast.makeText(context, "Координаты отсутствуют", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
                 Text("Тип карты: ${it.type}")
 
                 Spacer(modifier = Modifier.height(14.dp))
@@ -123,8 +150,26 @@ fun CardInfoScreen(
                     style = MaterialTheme.typography.bodySmall.copy(
                         fontWeight = FontWeight.Bold, fontSize = 18.sp)
                     )
-                Text("URL: ${it.bank.url}")
-                Text("Телефон: ${it.bank.phone}")
+                Text(
+                    "URL: ${it.bank.url}",
+                    modifier = Modifier.clickable {
+                        if (it.bank.url != null) {
+                            openUrl(context, it.bank.url)
+                        } else {
+                            Toast.makeText(context, "Ссылка отсутствует", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
+                Text(
+                    "Телефон: ${it.bank.phone}",
+                    modifier = Modifier.clickable {
+                        if (it.bank.phone != null) {
+                            openDialer(context, it.bank.phone)
+                        } else {
+                            Toast.makeText(context, "Номер телефона отсутствует", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
                 Text("Сайт: ${it.bank.name}")
                 Text("Город: ${it.bank.city}")
             }
@@ -134,4 +179,24 @@ fun CardInfoScreen(
             Text(text = message, color = Color.Red, modifier = Modifier.padding(top = 16.dp))
         }
     }
+}
+
+private fun openUrl(context: Context, url: String) {
+    val intent = Intent(Intent.ACTION_VIEW).apply {
+        data = Uri.parse(url)
+    }
+    context.startActivity(intent)
+}
+
+private fun openDialer(context: Context, phoneNumber: String) {
+    val intent = Intent(Intent.ACTION_DIAL).apply {
+        data = Uri.parse("tel:$phoneNumber")
+    }
+    context.startActivity(intent)
+}
+
+private fun openMap(context: Context, latitude: Double, longitude: Double) {
+    val uri = Uri.parse("geo:$latitude, $longitude")
+    val intent = Intent(Intent.ACTION_VIEW, uri)
+    context.startActivity(intent)
 }
