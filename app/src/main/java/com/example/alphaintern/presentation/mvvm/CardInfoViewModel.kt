@@ -26,7 +26,15 @@ class CardInfoViewModel(
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> get() = _errorMessage
 
-    fun getCardInfo(binNumber: String) {
+    fun checkAndGetCardInfo(binNumber: String) {
+        if (binNumber.length in 6..8) {
+            getCardInfo(binNumber)
+        } else {
+            _errorMessage.value = "Номер BIN должен содержать от 6 до 8 символов"
+        }
+    }
+
+    private fun getCardInfo(binNumber: String) {
         viewModelScope.launch {
             _loading.value = true
             _errorMessage.value = null
@@ -34,10 +42,8 @@ class CardInfoViewModel(
                 val info = getCardInfoUseCase(binNumber)
                 _cardInfo.value = info
 
-                info.let {
-                    val cardEntity = cardEntityMapper.mapToCardEntity(binNumber, info)
-                    addCardToDatabaseUseCase(cardEntity)
-                }
+                val cardEntity = cardEntityMapper.mapToCardEntity(binNumber, info)
+                addCardToDatabaseUseCase(cardEntity)
 
             } catch (e: Exception) {
                 Log.e("CardInfoViewModel", "Ошибка при загрузке данных: ${e.message}", e)

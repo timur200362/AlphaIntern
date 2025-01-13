@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">AlphaIntern</string>
+    <string name="search_title">Поиск</string>
+    <string name="bin_input_label">Введите BIN номер (6-8 цифр)</string>
+    <string name="bin_length_error">Должно быть от 6 до 8 цифр</string>
+    <string name="get_card_info_button">Получить информацию о карте</string>
+    <string name="card_info_title">Информация о карте</string>
+    <string name="country_label">Страна: %1$s</string>
+    <string name="latitude_label">Широта: %1$s</string>
+    <string name="longitude_label">Долгота: %1$s</string>
+    <string name="coordinates_missing">Координаты отсутствуют</string>
+    <string name="card_type_label">Тип карты: %1$s</string>
+    <string name="bank_data">Данные банка:</string>
+    <string name="url_label">URL: %1$s</string>
+    <string name="phone_label">Телефон: %1$s</string>
+    <string name="website_label">Сайт: %1$s</string>
+    <string name="city_label">Город: %1$s</string>
+    <string name="link_not_available">Ссылка отсутствует</string>
+    <string name="phone_not_available">Номер телефона отсутствует</string>
+
+    <string name="search_history_title">История поиска</string>
+    <string name="bin_label">BIN: %1$s</string>
+    <string name="bank_country_label">Страна: </string>
+    <string name="bank_latitude_label">Широта: </string>
+    <string name="bank_longitude_label">Долгота: </string>
+    <string name="bank_card_type_label">Тип карты: </string>
+    <string name="bank_url_label">URL: </string>
+    <string name="bank_phone_label">Телефон: </string>
+    <string name="bank_website_label">Сайт: </string>
+    <string name="bank_city_label">Город: </string>
 </resources>

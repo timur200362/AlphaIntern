@@ -1,8 +1,5 @@
 package com.example.alphaintern.presentation.screens
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,11 +26,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.alphaintern.R
 import com.example.alphaintern.presentation.mvvm.CardInfoViewModel
+import com.example.alphaintern.presentation.utils.IntentUtils.openDialer
+import com.example.alphaintern.presentation.utils.IntentUtils.openMap
+import com.example.alphaintern.presentation.utils.IntentUtils.openUrl
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -56,7 +58,7 @@ fun CardInfoScreen(
     ) {
 
         Text(
-            text = "Поиск",
+            text = stringResource(id = R.string.search_title),
             style = MaterialTheme.typography.bodySmall.copy(
                 fontWeight = FontWeight.Bold, fontSize = 22.sp)
         )
@@ -70,14 +72,14 @@ fun CardInfoScreen(
                     binNumber = it
                 }
             },
-            label = { Text("Введите BIN номер (6-8 цифр)") },
+            label = { Text(stringResource(id = R.string.bin_input_label)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             isError = binNumber.length !in (6..8),
             modifier = Modifier.fillMaxWidth()
         )
 
         Text(
-            text = "Должно быть от 6 до 8 цифр",
+            text = stringResource(id = R.string.bin_length_error),
             style = MaterialTheme.typography.bodyMedium,
             color = Color.Gray,
             modifier = Modifier.padding(top = 4.dp)
@@ -88,13 +90,11 @@ fun CardInfoScreen(
         Button(
             onClick = {
                 keyboardController?.hide()
-                if (binNumber.length in 6..8) {
-                    viewModel.getCardInfo(binNumber)
-                }
+                viewModel.checkAndGetCardInfo(binNumber)
             },
             modifier = Modifier.padding(top = 2.dp)
         ) {
-            Text("Получить информацию о карте")
+            Text(stringResource(id = R.string.get_card_info_button))
         }
 
         if (loading) {
@@ -102,14 +102,17 @@ fun CardInfoScreen(
         } else {
             cardInfo?.let {
                 Spacer(modifier = Modifier.height(70.dp))
+
                 Text(
-                    text = "Информация о карте",
+                    text = stringResource(id = R.string.card_info_title),
                     style = MaterialTheme.typography.bodySmall.copy(
                         fontWeight = FontWeight.Bold, fontSize = 18.sp)
                 )
-                Text("Страна: ${it.country.name}")
+
+                Text(stringResource(id = R.string.country_label, it.country.name))
+
                 Text(
-                    "Широта: ${it.country.latitude}",
+                    stringResource(id = R.string.latitude_label, it.country.latitude),
                     modifier = Modifier.clickable {
                         if (it.country.latitude != null && it.country.longitude != null) {
                             openMap(context, it.country.latitude, it.country.longitude)
@@ -120,7 +123,7 @@ fun CardInfoScreen(
                 )
 
                 Text(
-                    "Долгота: ${it.country.longitude}",
+                    stringResource(id = R.string.longitude_label, it.country.longitude),
                     modifier = Modifier.clickable {
                         if (it.country.longitude != null && it.country.latitude != null) {
                             openMap(context, it.country.longitude, it.country.latitude)
@@ -129,17 +132,19 @@ fun CardInfoScreen(
                         }
                     }
                 )
-                Text("Тип карты: ${it.type}")
+
+                Text(stringResource(id = R.string.card_type_label, it.type))
 
                 Spacer(modifier = Modifier.height(14.dp))
 
                 Text(
-                    "Данные банка:",
+                    stringResource(id = R.string.bank_data),
                     style = MaterialTheme.typography.bodySmall.copy(
                         fontWeight = FontWeight.Bold, fontSize = 18.sp)
                     )
+
                 Text(
-                    "URL: ${it.bank.url}",
+                    stringResource(id = R.string.url_label, it.bank.url),
                     modifier = Modifier.clickable {
                         if (it.bank.url != null) {
                             openUrl(context, it.bank.url)
@@ -148,8 +153,9 @@ fun CardInfoScreen(
                         }
                     }
                 )
+
                 Text(
-                    "Телефон: ${it.bank.phone}",
+                    stringResource(id = R.string.phone_label, it.bank.phone),
                     modifier = Modifier.clickable {
                         if (it.bank.phone != null) {
                             openDialer(context, it.bank.phone)
@@ -158,8 +164,10 @@ fun CardInfoScreen(
                         }
                     }
                 )
-                Text("Сайт: ${it.bank.name}")
-                Text("Город: ${it.bank.city}")
+
+                Text(stringResource(id = R.string.website_label, it.bank.name))
+
+                Text(stringResource(id = R.string.city_label, it.bank.city))
             }
         }
 
@@ -167,24 +175,4 @@ fun CardInfoScreen(
             Text(text = message, color = Color.Red, modifier = Modifier.padding(top = 16.dp))
         }
     }
-}
-
-private fun openUrl(context: Context, url: String) {
-    val intent = Intent(Intent.ACTION_VIEW).apply {
-        data = Uri.parse(url)
-    }
-    context.startActivity(intent)
-}
-
-private fun openDialer(context: Context, phoneNumber: String) {
-    val intent = Intent(Intent.ACTION_DIAL).apply {
-        data = Uri.parse("tel:$phoneNumber")
-    }
-    context.startActivity(intent)
-}
-
-private fun openMap(context: Context, latitude: Double, longitude: Double) {
-    val uri = Uri.parse("geo:$latitude, $longitude")
-    val intent = Intent(Intent.ACTION_VIEW, uri)
-    context.startActivity(intent)
 }

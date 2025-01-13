@@ -17,10 +17,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.alphaintern.data.database.CardEntity
+import com.example.alphaintern.R
 import com.example.alphaintern.presentation.mvvm.SearchHistoryViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -41,7 +42,7 @@ fun SearchHistoryScreen(
         verticalArrangement = Arrangement.Top
     ) {
         Text(
-            text = "История поиска",
+            text = stringResource(id = R.string.search_history_title),
             style = MaterialTheme.typography.bodySmall.copy(
                 fontWeight = FontWeight.Bold, fontSize = 22.sp
             )
@@ -56,15 +57,15 @@ fun SearchHistoryScreen(
                     elevation = CardDefaults.cardElevation(4.dp)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
-                        Text("BIN: ${card.bin}")
-                        Text("Страна: ${card.country}")
-                        Text("Широта: ${card.latitude}")
-                        Text("Долгота: ${card.longitude}")
-                        Text("Тип карты: ${card.type}")
-                        Text("URL: ${card.bankUrl}")
-                        Text("Телефон: ${card.bankPhone}")
-                        Text("Сайт: ${card.bankWebsite}")
-                        Text("Город: ${card.bankCity}")
+                        Text(stringResource(id = R.string.bin_label, card.bin))
+                        Text(stringResource(id = R.string.bank_country_label) + "${card.country}")
+                        Text(stringResource(id = R.string.bank_latitude_label) + "${card.latitude}")
+                        Text(stringResource(id = R.string.bank_longitude_label) + "${card.longitude}")
+                        Text(stringResource(id = R.string.bank_card_type_label) + "${card.type}")
+                        Text(stringResource(id = R.string.bank_url_label) + "${card.bankUrl}")
+                        Text(stringResource(id = R.string.bank_phone_label) + "${card.bankPhone}")
+                        Text(stringResource(id = R.string.bank_website_label) + "${card.bankWebsite}")
+                        Text(stringResource(id = R.string.bank_city_label) + "${card.bankCity}")
                     }
                 }
             }
