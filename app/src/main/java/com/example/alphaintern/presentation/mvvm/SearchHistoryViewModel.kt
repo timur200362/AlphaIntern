@@ -15,11 +15,7 @@ class SearchHistoryViewModel(
     private val _cards = MutableLiveData<List<CardEntity>>(emptyList())
     val cards: LiveData<List<CardEntity>> get() = _cards
 
-    init {
-        loadSearchHistoryCards()
-    }
-
-    private fun loadSearchHistoryCards() {
+    fun loadSearchHistoryCards() {
         viewModelScope.launch {
             val history = getSearchHistoryCardsFromDatabaseUseCase()
             _cards.value = history

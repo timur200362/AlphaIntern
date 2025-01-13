@@ -2,9 +2,6 @@ package com.example.alphaintern.app
 
 import android.app.Application
 import com.example.alphaintern.di.appModule
-import com.example.alphaintern.di.dataModule
-import com.example.alphaintern.di.domainModule
-import com.example.alphaintern.di.presentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

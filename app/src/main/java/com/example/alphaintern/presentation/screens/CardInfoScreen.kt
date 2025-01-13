@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -34,19 +33,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat.startActivity
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.example.alphaintern.presentation.mvvm.CardInfoViewModel
 import org.koin.androidx.compose.koinViewModel
-
-@Composable
-fun HomeScreen(
-    modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
-    startDestination: String = "home"
-) {
-}
 
 @Composable
 fun CardInfoScreen(
