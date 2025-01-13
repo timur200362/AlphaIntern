@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "cards")
 data class CardEntity (
     @PrimaryKey(autoGenerate = true) val cardId: Int = 0,
-    @ColumnInfo(name = "binCard") val bin: String,
+    @ColumnInfo(name = "bin") val bin: String,
     @ColumnInfo(name = "country") val country: String?,
     @ColumnInfo(name = "latitude") val latitude: Double?,
     @ColumnInfo(name = "longitude") val longitude: Double?,

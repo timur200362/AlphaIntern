@@ -9,11 +9,13 @@ import com.example.alphaintern.data.database.CardEntity
 import com.example.alphaintern.data.remote.response.CardInfo
 import com.example.alphaintern.domain.usecase.api.interfaces.GetCardInfoUseCase
 import com.example.alphaintern.domain.usecase.database.interfaces.AddCardToDatabaseUseCase
+import com.example.alphaintern.presentation.mapper.CardEntityMapper
 import kotlinx.coroutines.launch
 
 class CardInfoViewModel(
     private val getCardInfoUseCase: GetCardInfoUseCase,
-    private val addCardToDatabaseUseCase: AddCardToDatabaseUseCase
+    private val addCardToDatabaseUseCase: AddCardToDatabaseUseCase,
+    private val cardEntityMapper: CardEntityMapper
 ): ViewModel() {
     private val _cardInfo = MutableLiveData<CardInfo?>()
     val cardInfo: LiveData<CardInfo?> get() = _cardInfo
@@ -33,17 +35,7 @@ class CardInfoViewModel(
                 _cardInfo.value = info
 
                 info.let {
-                    val cardEntity = CardEntity(
-                        bin = binNumber,
-                        country = it.country.name,
-                        latitude = it.country.latitude,
-                        longitude = it.country.longitude,
-                        type = it.type,
-                        bankUrl = it.bank.url,
-                        bankPhone = it.bank.phone,
-                        bankWebsite = it.bank.name,
-                        bankCity = it.bank.city
-                    )
+                    val cardEntity = cardEntityMapper.mapToCardEntity(binNumber, info)
                     addCardToDatabaseUseCase(cardEntity)
                 }
 
